@@ -5,7 +5,7 @@ HIBP API script made in Python3:
  + Check any number of Email addresses for a history of breaches.
  + Check any number of passwords for a history of breaches.
 """
-import time, urllib.request, json# Imports relevant modules
+import urllib.request, json# Imports relevant modules
 #from io import StringIO
 
 # User Agent:
@@ -95,7 +95,8 @@ def se():# Single Email
 	print("Querying the HIBP database with %s..."% e)
 	r = urllib.request.Request(e_url+e, data=None, headers={'User-Agent' : agent})
 	o = urllib.request.urlopen(r)
-	print(o.read())
+	jl = json.loads(o.read().decode('utf-8'))# Loads and decodes JSON response.
+	
 # END of single email address portion
 ##########################################################################
 
