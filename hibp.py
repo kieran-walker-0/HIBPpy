@@ -108,25 +108,25 @@ def se():# Single Email
 				break
 ##########################################################
 # FILE INPUT START
-		
-		f_titles = "Breached sites: \n"
+		d_index = 0
+		f_input = ""
 		for t in title:
-			f_titles += ("[+] %s \n"% t)
-		f_data = "\n The following data has been discovered in the above databases: \n "
-		for d in jl_index["DataClasses"]:
-				try:
-					f_data += ("[+] %s \n"% str(d))
-				except:
-					break
+			f_input += "[+] "+t+" \n"+"Date breached:\n"+str(date[d_index])+"\n Data compromised in breach:"
+			d_index += 1
+			
+#		f_data = "\n The following data has been discovered in the above databases: \n "
+#		for d in jl_index["DataClasses"]:
+#				try:
+#					f_data += ("- %s \n"% str(d))
+#				except:
+#					break
 		f_in = """
 HIBP.py
  Breach data retrieved from 'HaveIBeenPwned?' at """+str(datetime.datetime.now())+""":
  
-"""+f_titles+"""
-"""+f_data+"""
+Breached sites: 
+"""+f_input+"""
 
-
-		 
 		"""
 # FILE INPUT END
 ##########################################################################
