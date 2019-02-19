@@ -109,17 +109,19 @@ def se():# Single Email
 ##########################################################
 # FILE INPUT START
 		d_index = 0
-		f_input = ""
+		f_input = ""# Title and date of breach
+		#f_in_dc = ""
+		current_dc = data
+		dc_index = 0
+		# God bless you Ian for the help here.
 		for t in title:
-			f_input += "[+] "+t+" \n"+"Date breached:\n"+str(date[d_index])+"\n Data compromised in breach:"
+			f_input += "[+] "+t+" \n"+"Date breached: "+str(date[d_index])+"\n Data compromised in breach:\n"
+			f_data = ""
+			for d in data[d_index]:
+				f_data += ("	- %s \n"% d)
 			d_index += 1
-			
-#		f_data = "\n The following data has been discovered in the above databases: \n "
-#		for d in jl_index["DataClasses"]:
-#				try:
-#					f_data += ("- %s \n"% str(d))
-#				except:
-#					break
+			dc_index = 0# Resets DataClasses index.
+			f_input += f_data+"\n"
 		f_in = """
 HIBP.py
  Breach data retrieved from 'HaveIBeenPwned?' at """+str(datetime.datetime.now())+""":
@@ -128,9 +130,16 @@ Breached sites:
 """+f_input+"""
 
 		"""
+		print(f_in)
+		e_splitter = e.split("@")
+		email_name = e_splitter[0]# Includes all chars before the "@" symbol in 'e'.
+		time_splitter = str(datetime.datetime.now()).split()# Gets rid of unnecessary accuracy of the now() method.
+		fname = email_name+"-hibp_report-"+time_splitter[0]+".txt"
+		print("Output saved in current directory as "+fname+".")
+		f = open(fname, "w")
+		f.write(f_in)
 # FILE INPUT END
 ##########################################################################
-		print(f_in)
 	except:# If/when 404 response code is thrown.
 		print("[+] No breach data found, lucky you!")
 # END of single email address portion
@@ -176,7 +185,21 @@ Choose an option:
 		except:
 			print("[+] No password hash found, lucky you!")
 	if opt == "2":
-		print("HASH")
+		h = input("HIBP> SHA-1 hash> ")
+		prefix = h[0:5].upper()
+		suffix = h[5:]
+		r = urllib.request.Request(p_url+prefix, data=None, headers={'User-Agent' : agent})
+		try:
+			o = urllib.request.urlopen(r).read()
+			re_compile = re.compile("("+suffix+")\:([0-9])*", flags=re.IGNORECASE)
+			result = re.search(re_compile, str(o))
+			response = result[0]
+			splitter = response.split(":")
+			split_n = splitter[1]
+			print("[!] That password has been previously compromised %s times!"% split_n)
+		except:
+			print("[+] No password hash found, lucky you!")
+		
 
 
 # END of single password portion
