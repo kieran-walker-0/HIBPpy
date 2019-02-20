@@ -24,8 +24,8 @@ p_url = "https://api.pwnedpasswords.com/range/"
         4. If it exists, the password was breached - the number after the colon is the number of times it was breached.
 """
 def oc(opt, vs):# Opt Check
-	v_main = {"1","2","99"}# Set of valid opts during main.
-	v_pass = {"1", "2"}# Set of valid opts during password opts.
+	v_main = ("1","2","99")# Valid opts during main.
+	v_pass = ("1", "2")# Valid opts during password opts.
 	if vs == 0:
 		print("Something has gone wrong, vs=0 is only for testing.")
 	if vs == 1:
