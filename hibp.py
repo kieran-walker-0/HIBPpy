@@ -32,7 +32,7 @@ def oc(opt, vs):# Opt Check
 		vset = v_main
 	if vs == 2:
 		vset = v_pass
-	oc_ = opt in v_main # Checks if the value of opt is present in the present in the relevant set.
+	oc_ = opt in vset # Checks if the value of opt is present in the present in the relevant set.
 	if oc_ == True:
 		pass
 	else:
