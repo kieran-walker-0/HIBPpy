@@ -15,7 +15,7 @@ e_url = "https://haveibeenpwned.com/api/v2/breachedaccount/"
 p_url = "https://api.pwnedpasswords.com/range/"
 """
 ^^^ This confused me for a while, it only accepts the first five characters of the hash.
-    BreachUtils then needs to search for the rest of the SHA-1 hash and concat the five-char prefix to find the original password.
+    HIBP.py then needs to search for the rest of the SHA-1 hash and concat the five-char prefix to find the original password.
 
     E.g. "password" is:
         1. Generate SHA-1 hash, which is "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8" in this case.
@@ -104,11 +104,10 @@ def se():# Single Email
 		#f_in_dc = ""
 		current_dc = data
 		dc_index = 0
-		# God bless you Ian for the help here.
 		for t in title:
 			f_input += "[+] "+t+" \n"+"Date breached: "+str(date[d_index])+"\n Data compromised in breach:\n"
 			f_data = ""
-			for d in data[d_index]:
+			for d in data[d_index]:# Cheers for the help, Ian!
 				f_data += ("	- %s \n"% d)
 			d_index += 1
 			dc_index = 0# Resets DataClasses index.
