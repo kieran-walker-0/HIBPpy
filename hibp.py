@@ -24,7 +24,7 @@ p_url = "https://api.pwnedpasswords.com/range/"
         4. If it exists, the password was breached - the number after the colon is the number of times it was breached.
 """
 def oc(opt, vs):# Opt Check
-	v_main = {"1","2","3","4","98","99"}# Set of valid opts during main.
+	v_main = {"1","2","99"}# Set of valid opts during main.
 	v_pass = {"1", "2"}# Set of valid opts during password opts.
 	if vs == 0:
 		print("Something has gone wrong, vs=0 is only for testing.")
@@ -54,11 +54,8 @@ def mph():# Main Print Help
 	print("""
 	Choose an option:
 	[1] Query with a single Email address.
-	[2] Query with a list of Email addresses.
-	[3] Query with a single password.
-	[4] Query with a list of passwords.
+	[2] Query with a single password.
 	
-	[98] Test connection to the HIBP servers.
 	[99] Quit.
 	""")
 	
@@ -71,13 +68,7 @@ def i():# Interactive interface
 	if opt == "1":
 		se()
 	if opt == "2":
-		print("This is the option for a list of Email addresses")
-	if opt == "3":
 		sp()
-	if opt == "4":
-		print("This is the option for a list of passwords")
-	if opt == "98":
-		print("This is the option to test connection to the HIBP server(s)")
 	if opt == "99":
 		print("Quitting...")
 		quit()
