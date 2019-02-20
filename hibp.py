@@ -100,17 +100,14 @@ def se():# Single Email
 ##########################################################
 # FILE INPUT START
 		d_index = 0
-		f_input = ""# Title and date of breach
-		#f_in_dc = ""
+		f_input = ""
 		current_dc = data
-		dc_index = 0
 		for t in title:
 			f_input += "[+] "+t+" \n"+"Date breached: "+str(date[d_index])+"\n Data compromised in breach:\n"
 			f_data = ""
 			for d in data[d_index]:# Cheers for the help, Ian!
 				f_data += ("	- %s \n"% d)
 			d_index += 1
-			dc_index = 0# Resets DataClasses index.
 			f_input += f_data+"\n"
 		f_in = """
 HIBP.py
